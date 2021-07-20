@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <title>freeCodeCamp Vue Instance</title>
+</head>
+<body>
+  <div id="root">
+    <div class="item">
+      <h1>Directives v-if, v-else-if, v-else</h1>
+      <div v-if="count === 1">
+        Green
+      </div>
+      <div v-else-if="count === 2">
+        Red
+      </div>
+      <div v-else>
+        Orange
+      </div>
+    </div>
+    <div class="item">
+      <h1>Directive v-show</h1>
+      <div v-show="count === 1">
+        Green
+      </div>
+    </div>
+    <div class="item">
+      <h1>Directive v-model</h1>
+      <h4>
+        {{ greeting }}
+      </h4>
+      <input type="text" v-model="greeting">
+    </div>
+    <div class="item">
+      <h1>Directive v-bind</h1>
+      <div>
+        {{ email }}
+        <br>
+        <!--
+          ':' is the short for v-bind:
+        -->
+        <input type="text" v-model="email" :class="{red: email.length < 2}">
+        <!--
+          or
+          <input type="text" v-model="email" :class="[email.length < 2 ? 'red' : 'green']">
+        -->
+        <br>
+        <button onclick="alert('signed up')" :disabled="email.length < 2">Submit</button>
+      </div>
+    </div>
+    <div class="item">
+      <h1>Directive v-for | filters | computed </h1>
+      {{ kittifyName }}
+      <ul>
+        <li v-for="(cat, index) in cats" :key="index">
+          {{ cat.name | uppercase | lowerCase }}
+        </li>
+      </ul>
+    </div>
+    <div class="item">
+      <h1>Directive v-on</h1>
+      <!--
+        @ is short for v-on
+      -->
+      <input type="text" v-model="newCat" @keyup.enter="addKitty">
+      <button @click="addKitty">+ Add</button>
+    </div>
+    <div class="item">
+      <h1>Child Component</h1>
+      <cat-list :cats="cats"></cat-list>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
